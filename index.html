@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ardalan Varshowsaz – Support Dashboard</title>
-  <link rel="stylesheet" href="style.css" /> 
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════
-     LOGIN PAGE
-══════════════════════════════════════════════ -->
+<!-- LOGIN PAGE -->
 <div class="page" id="loginPage">
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
@@ -24,14 +22,9 @@
       </div>
     </div>
     <div class="login-avatar-ring">
-      <div class="login-avatar-circle">
+      <div class="login-avatar-circle" id="loginAvatarCircle">
         <svg viewBox="0 0 80 80" width="80" height="80">
-          <defs>
-            <radialGradient id="ag" cx="50%" cy="35%" r="60%">
-              <stop offset="0%" stop-color="#a78bfa"/>
-              <stop offset="100%" stop-color="#1e1b4b"/>
-            </radialGradient>
-          </defs>
+          <defs><radialGradient id="ag" cx="50%" cy="35%" r="60%"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#1e1b4b"/></radialGradient></defs>
           <circle cx="40" cy="40" r="40" fill="url(#ag)"/>
           <circle cx="40" cy="30" r="13" fill="rgba(255,255,255,0.85)"/>
           <ellipse cx="40" cy="62" rx="20" ry="14" fill="rgba(255,255,255,0.7)"/>
@@ -40,110 +33,47 @@
     </div>
     <h2 class="login-title">Welcome Back</h2>
     <p class="login-sub">Sign in to your support portal</p>
-    <div class="glass-field">
-      <span class="field-icon">✉</span>
-      <input type="email" id="loginEmail" placeholder="ardalan@opofinance.com" />
-    </div>
-    <div class="glass-field">
-      <span class="field-icon">🔒</span>
-      <input type="password" id="loginPass" placeholder="••••••••" />
-    </div>
+    <div class="glass-field"><span class="field-icon">✉</span><input type="email" id="loginEmail" placeholder="ardalan@opofinance.com"/></div>
+    <div class="glass-field"><span class="field-icon">🔒</span><input type="password" id="loginPass" placeholder="••••••••"/></div>
     <button class="glass-btn" id="loginBtn">Sign In</button>
     <div class="login-footer">Don't have an account? <a class="glink" id="goSignup">Sign up</a></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     SIGNUP PAGE
-══════════════════════════════════════════════ -->
+<!-- SIGNUP PAGE -->
 <div class="page hidden" id="signupPage">
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
-  <div class="orb orb4"></div>
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="orb orb4"></div>
   <div class="login-glass">
-    <div class="login-brand">
-      <div class="brand-logo">
-        <span class="logo-gem">◆</span>
-        <span class="logo-text">Opofinance</span>
-      </div>
-    </div>
+    <div class="login-brand"><div class="brand-logo"><span class="logo-gem">◆</span><span class="logo-text">Opofinance</span></div></div>
     <h2 class="login-title">Create Account</h2>
     <p class="login-sub">Join the support team portal</p>
-    <div class="glass-field">
-      <span class="field-icon">👤</span>
-      <input type="text" id="signupName" placeholder="Full name" />
-    </div>
-    <div class="glass-field">
-      <span class="field-icon">✉</span>
-      <input type="email" id="signupEmail" placeholder="ardalan@opofinance.com" />
-    </div>
-    <div class="glass-field">
-      <span class="field-icon">🔒</span>
-      <input type="password" id="signupPass" placeholder="••••••••" />
-    </div>
+    <div class="glass-field"><span class="field-icon">👤</span><input type="text" id="signupName" placeholder="Full name"/></div>
+    <div class="glass-field"><span class="field-icon">✉</span><input type="email" id="signupEmail" placeholder="ardalan@opofinance.com"/></div>
+    <div class="glass-field"><span class="field-icon">🔒</span><input type="password" id="signupPass" placeholder="••••••••"/></div>
     <button class="glass-btn" id="signupBtn">Create Account</button>
     <div class="login-footer">Already have an account? <a class="glink" id="goLogin">Sign in</a></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     DASHBOARD
-══════════════════════════════════════════════ -->
+<!-- DASHBOARD -->
 <div class="app hidden" id="dashboardPage">
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-logo" id="sidebarLogo">
-      <div class="s-logo-gem">◆</div>
-      <span>Opofinance</span>
+      <div class="s-logo-gem">◆</div><span>Opofinance</span>
     </div>
     <div class="sidebar-section">Main</div>
-    <div class="nav-item active" data-page="Dashboard">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
-      </span>Dashboard
-    </div>
-    <div class="nav-item" data-page="Live Chats">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </span>Live Chats
-      <span class="nav-badge">3</span>
-    </div>
-    <div class="nav-item" data-page="Tickets">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      </span>Tickets
-      <span class="nav-badge red">24</span>
-    </div>
-    <div class="nav-item" data-page="Clients">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </span>Clients
-    </div>
+    <div class="nav-item active" data-page="Dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span>Dashboard</div>
+    <div class="nav-item" data-page="Live Chats"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Live Chats<span class="nav-badge">3</span></div>
+    <div class="nav-item" data-page="Tickets"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Tickets<span class="nav-badge red">24</span></div>
+    <div class="nav-item" data-page="Clients"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients</div>
     <div class="sidebar-section">Tools</div>
-    <div class="nav-item" data-page="Escalations">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </span>Escalations
-      <span class="nav-badge red">4</span>
-    </div>
-    <div class="nav-item" data-page="Performance">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </span>Performance
-    </div>
-    <div class="nav-item" data-page="Knowledge Base">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </span>Knowledge Base
-    </div>
+    <div class="nav-item" data-page="Escalations"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>Escalations<span class="nav-badge red">4</span></div>
+    <div class="nav-item" data-page="Performance"><span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>Performance</div>
+    <div class="nav-item" data-page="Knowledge Base"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Knowledge Base</div>
     <div class="sidebar-spacer"></div>
-    <div class="nav-item logout" id="logoutBtn">
-      <span class="nav-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-      </span>Sign Out
-    </div>
+    <div class="nav-item logout" id="logoutBtn"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>Sign Out</div>
   </aside>
 
   <!-- MAIN -->
@@ -151,23 +81,26 @@
     <div class="topbar">
       <h1 id="pageTitle">Dashboard</h1>
       <div class="topbar-right">
+        <!-- DARK/LIGHT MODE TOGGLE -->
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+          <span class="theme-label" id="themeLabel">Dark</span>
+        </button>
         <div class="topbar-user">
           <div class="user-info">
             <div class="user-name">Ardalan Varshowsaz</div>
             <div class="user-role">Chat Support Agent</div>
           </div>
           <div class="topbar-avatar" id="topbarAvatar" title="View Profile">
-            <svg viewBox="0 0 56 56" width="42" height="42">
-              <defs>
-                <radialGradient id="tavg" cx="50%" cy="30%" r="65%">
-                  <stop offset="0%" stop-color="#818cf8"/>
-                  <stop offset="100%" stop-color="#1e1b4b"/>
-                </radialGradient>
-              </defs>
-              <circle cx="28" cy="28" r="28" fill="url(#tavg)"/>
-              <circle cx="28" cy="21" r="9" fill="rgba(255,255,255,0.9)"/>
-              <ellipse cx="28" cy="44" rx="14" ry="10" fill="rgba(255,255,255,0.75)"/>
-            </svg>
+            <div class="avatar-img-wrap" id="avatarImgWrap">
+              <svg id="defaultAvatarSvg" viewBox="0 0 56 56" width="42" height="42">
+                <defs><radialGradient id="tavg" cx="50%" cy="30%" r="65%"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#1e1b4b"/></radialGradient></defs>
+                <circle cx="28" cy="28" r="28" fill="url(#tavg)"/>
+                <circle cx="28" cy="21" r="9" fill="rgba(255,255,255,0.9)"/>
+                <ellipse cx="28" cy="44" rx="14" ry="10" fill="rgba(255,255,255,0.75)"/>
+              </svg>
+              <img id="topbarPhoto" src="" alt="" style="display:none;width:42px;height:42px;border-radius:50%;object-fit:cover;"/>
+            </div>
             <span class="avatar-ring"></span>
           </div>
         </div>
@@ -176,57 +109,26 @@
 
     <div class="content">
 
-      <!-- ── DASHBOARD ── -->
+      <!-- DASHBOARD -->
       <div class="section" id="section-Dashboard">
-        <div class="section-header">
-          <div>
-            <div class="greeting">Good morning, Ardalan 👋</div>
-            <div class="subtext">Here's your support overview for today</div>
-          </div>
-        </div>
+        <div class="greeting">Good morning, Ardalan 👋</div>
+        <div class="subtext">Here's your support overview for today</div>
         <div class="stats-grid">
-          <div class="stat-card glass-card blue-card hovervib">
-            <div class="card-glow blue-glow"></div>
-            <div class="card-icon blue-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div class="stat-label">Open Tickets</div>
-            <div class="stat-value">24</div>
-            <span class="stat-pill red-pill">+4 since yesterday</span>
-          </div>
-          <div class="stat-card glass-card green-card hovervib">
-            <div class="card-glow green-glow"></div>
-            <div class="card-icon green-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="stat-label">Resolved Today</div>
-            <div class="stat-value">11</div>
-            <span class="stat-pill green-pill">On track ✓</span>
-          </div>
-          <div class="stat-card glass-card purple-card hovervib">
-            <div class="card-glow purple-glow"></div>
-            <div class="card-icon purple-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div class="stat-label">Avg Response Time</div>
-            <div class="stat-value">3.2m</div>
-            <span class="stat-pill blue-pill">Target: 5m</span>
-          </div>
-          <div class="stat-card glass-card teal-card hovervib">
-            <div class="card-glow teal-glow"></div>
-            <div class="card-icon teal-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <div class="stat-label">CSAT Score</div>
-            <div class="stat-value">94%</div>
-            <span class="stat-pill green-pill">Excellent 🌟</span>
-          </div>
+          <div class="stat-card glass-card blue-card hovervib"><div class="card-glow blue-glow"></div><div class="card-icon blue-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stat-label">Open Tickets</div><div class="stat-value">24</div><span class="stat-pill red-pill">+4 since yesterday</span></div>
+          <div class="stat-card glass-card green-card hovervib"><div class="card-glow green-glow"></div><div class="card-icon green-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div class="stat-label">Resolved Today</div><div class="stat-value">11</div><span class="stat-pill green-pill">On track ✓</span></div>
+          <div class="stat-card glass-card purple-card hovervib"><div class="card-glow purple-glow"></div><div class="card-icon purple-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stat-label">Avg Response Time</div><div class="stat-value">3.2m</div><span class="stat-pill blue-pill">Target: 5m</span></div>
+          <div class="stat-card glass-card teal-card hovervib"><div class="card-glow teal-glow"></div><div class="card-icon teal-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="stat-label">CSAT Score</div><div class="stat-value">94%</div><span class="stat-pill green-pill">Excellent 🌟</span></div>
         </div>
         <div class="two-col">
           <div class="widget glass-widget">
             <div class="widget-title">Recent Tickets <span class="w-badge">Last 24 hrs</span></div>
-            <table class="ticket-table">
-              <thead><tr><th>Ticket</th><th>Client</th><th>Issue</th><th>Priority</th><th>Status</th></tr></thead>
-              <tbody>
-                <tr class="hovervib"><td>#5821</td><td>Sarah M.</td><td>Withdrawal delay</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
-                <tr class="hovervib"><td>#5820</td><td>James K.</td><td>Verification docs</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill prog-pill">In Progress</span></td></tr>
-                <tr class="hovervib"><td>#5819</td><td>Lena R.</td><td>Login issue</td><td><span class="dot green-dot"></span>Low</td><td><span class="pill res-pill">Resolved</span></td></tr>
-                <tr class="hovervib"><td>#5817</td><td>Omar F.</td><td>Deposit not credited</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
-                <tr class="hovervib"><td>#5815</td><td>Priya N.</td><td>Platform connection</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill res-pill">Resolved</span></td></tr>
-              </tbody>
-            </table>
+            <table class="ticket-table"><thead><tr><th>Ticket</th><th>Client</th><th>Issue</th><th>Priority</th><th>Status</th></tr></thead><tbody>
+              <tr class="hovervib"><td>#5821</td><td>Sarah M.</td><td>Withdrawal delay</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
+              <tr class="hovervib"><td>#5820</td><td>James K.</td><td>Verification docs</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill prog-pill">In Progress</span></td></tr>
+              <tr class="hovervib"><td>#5819</td><td>Lena R.</td><td>Login issue</td><td><span class="dot green-dot"></span>Low</td><td><span class="pill res-pill">Resolved</span></td></tr>
+              <tr class="hovervib"><td>#5817</td><td>Omar F.</td><td>Deposit not credited</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
+              <tr class="hovervib"><td>#5815</td><td>Priya N.</td><td>Platform connection</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill res-pill">Resolved</span></td></tr>
+            </tbody></table>
           </div>
           <div class="widget glass-widget">
             <div class="widget-title">Today's Performance</div>
@@ -241,116 +143,94 @@
         </div>
       </div>
 
-      <!-- ── LIVE CHATS ── -->
+      <!-- LIVE CHATS -->
       <div class="section hidden" id="section-Live Chats">
-        <div class="greeting">💬 Live Chats</div>
-        <div class="subtext">Currently active client conversations</div>
+        <div class="greeting">💬 Live Chats</div><div class="subtext">Currently active client conversations</div>
         <div class="stats-grid">
           <div class="stat-card glass-card blue-card hovervib"><div class="card-glow blue-glow"></div><div class="stat-label">Active Chats</div><div class="stat-value">3</div><span class="stat-pill blue-pill">Right now</span></div>
           <div class="stat-card glass-card green-card hovervib"><div class="card-glow green-glow"></div><div class="stat-label">Avg Wait Time</div><div class="stat-value">1.4m</div><span class="stat-pill green-pill">Good</span></div>
           <div class="stat-card glass-card teal-card hovervib"><div class="card-glow teal-glow"></div><div class="stat-label">Chats Today</div><div class="stat-value">18</div><span class="stat-pill blue-pill">+3 vs yesterday</span></div>
           <div class="stat-card glass-card purple-card hovervib"><div class="card-glow purple-glow"></div><div class="stat-label">Resolved Chats</div><div class="stat-value">15</div><span class="stat-pill green-pill">83% rate</span></div>
         </div>
-        <div class="widget glass-widget">
-          <div class="widget-title">Active Conversations</div>
-          <table class="ticket-table">
-            <thead><tr><th>Client</th><th>Topic</th><th>Started</th><th>Wait</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr class="hovervib"><td>🟢 Ali Hassan</td><td>Account verification</td><td>10:32 AM</td><td>2m</td><td><span class="pill open-pill">Active</span></td></tr>
-              <tr class="hovervib"><td>🟡 Maria Lopez</td><td>Deposit issue</td><td>10:45 AM</td><td>5m</td><td><span class="pill prog-pill">Waiting</span></td></tr>
-              <tr class="hovervib"><td>🟢 David Chen</td><td>Password reset</td><td>11:01 AM</td><td>1m</td><td><span class="pill open-pill">Active</span></td></tr>
-            </tbody>
-          </table>
+        <div class="widget glass-widget"><div class="widget-title">Active Conversations</div>
+          <table class="ticket-table"><thead><tr><th>Client</th><th>Topic</th><th>Started</th><th>Wait</th><th>Status</th></tr></thead><tbody>
+            <tr class="hovervib"><td>🟢 Ali Hassan</td><td>Account verification</td><td>10:32 AM</td><td>2m</td><td><span class="pill open-pill">Active</span></td></tr>
+            <tr class="hovervib"><td>🟡 Maria Lopez</td><td>Deposit issue</td><td>10:45 AM</td><td>5m</td><td><span class="pill prog-pill">Waiting</span></td></tr>
+            <tr class="hovervib"><td>🟢 David Chen</td><td>Password reset</td><td>11:01 AM</td><td>1m</td><td><span class="pill open-pill">Active</span></td></tr>
+          </tbody></table>
         </div>
       </div>
 
-      <!-- ── TICKETS ── -->
+      <!-- TICKETS -->
       <div class="section hidden" id="section-Tickets">
-        <div class="greeting">🎫 Tickets</div>
-        <div class="subtext">All support tickets assigned to you</div>
+        <div class="greeting">🎫 Tickets</div><div class="subtext">All support tickets assigned to you</div>
         <div class="stats-grid">
           <div class="stat-card glass-card blue-card hovervib"><div class="card-glow blue-glow"></div><div class="stat-label">Total Open</div><div class="stat-value">24</div><span class="stat-pill red-pill">Needs attention</span></div>
           <div class="stat-card glass-card teal-card hovervib"><div class="card-glow teal-glow"></div><div class="stat-label">High Priority</div><div class="stat-value">6</div><span class="stat-pill red-pill">Urgent</span></div>
           <div class="stat-card glass-card green-card hovervib"><div class="card-glow green-glow"></div><div class="stat-label">Resolved This Week</div><div class="stat-value">42</div><span class="stat-pill green-pill">Great work!</span></div>
           <div class="stat-card glass-card purple-card hovervib"><div class="card-glow purple-glow"></div><div class="stat-label">Avg Close Time</div><div class="stat-value">4.1h</div><span class="stat-pill blue-pill">Target: 6h</span></div>
         </div>
-        <div class="widget glass-widget">
-          <div class="widget-title">All Tickets</div>
-          <table class="ticket-table">
-            <thead><tr><th>Ticket</th><th>Client</th><th>Issue</th><th>Created</th><th>Priority</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr class="hovervib"><td>#5821</td><td>Sarah M.</td><td>Withdrawal delay</td><td>Today 9:10am</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
-              <tr class="hovervib"><td>#5820</td><td>James K.</td><td>Verification docs</td><td>Today 8:45am</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill prog-pill">In Progress</span></td></tr>
-              <tr class="hovervib"><td>#5819</td><td>Lena R.</td><td>Login issue</td><td>Yesterday</td><td><span class="dot green-dot"></span>Low</td><td><span class="pill res-pill">Resolved</span></td></tr>
-              <tr class="hovervib"><td>#5817</td><td>Omar F.</td><td>Deposit not credited</td><td>Yesterday</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
-              <tr class="hovervib"><td>#5815</td><td>Priya N.</td><td>Platform connection</td><td>2 days ago</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill res-pill">Resolved</span></td></tr>
-              <tr class="hovervib"><td>#5810</td><td>Tom W.</td><td>Leverage change</td><td>2 days ago</td><td><span class="dot green-dot"></span>Low</td><td><span class="pill prog-pill">In Progress</span></td></tr>
-            </tbody>
-          </table>
+        <div class="widget glass-widget"><div class="widget-title">All Tickets</div>
+          <table class="ticket-table"><thead><tr><th>Ticket</th><th>Client</th><th>Issue</th><th>Created</th><th>Priority</th><th>Status</th></tr></thead><tbody>
+            <tr class="hovervib"><td>#5821</td><td>Sarah M.</td><td>Withdrawal delay</td><td>Today 9:10am</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
+            <tr class="hovervib"><td>#5820</td><td>James K.</td><td>Verification docs</td><td>Today 8:45am</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill prog-pill">In Progress</span></td></tr>
+            <tr class="hovervib"><td>#5819</td><td>Lena R.</td><td>Login issue</td><td>Yesterday</td><td><span class="dot green-dot"></span>Low</td><td><span class="pill res-pill">Resolved</span></td></tr>
+            <tr class="hovervib"><td>#5817</td><td>Omar F.</td><td>Deposit not credited</td><td>Yesterday</td><td><span class="dot red-dot"></span>High</td><td><span class="pill open-pill">Open</span></td></tr>
+            <tr class="hovervib"><td>#5815</td><td>Priya N.</td><td>Platform connection</td><td>2 days ago</td><td><span class="dot amber-dot"></span>Medium</td><td><span class="pill res-pill">Resolved</span></td></tr>
+            <tr class="hovervib"><td>#5810</td><td>Tom W.</td><td>Leverage change</td><td>2 days ago</td><td><span class="dot green-dot"></span>Low</td><td><span class="pill prog-pill">In Progress</span></td></tr>
+          </tbody></table>
         </div>
       </div>
 
-      <!-- ── CLIENTS ── -->
+      <!-- CLIENTS -->
       <div class="section hidden" id="section-Clients">
-        <div class="greeting">👥 Clients</div>
-        <div class="subtext">Client accounts you are supporting</div>
+        <div class="greeting">👥 Clients</div><div class="subtext">Client accounts you are supporting</div>
         <div class="stats-grid">
           <div class="stat-card glass-card blue-card hovervib"><div class="card-glow blue-glow"></div><div class="stat-label">Total Clients</div><div class="stat-value">138</div><span class="stat-pill blue-pill">Active</span></div>
           <div class="stat-card glass-card green-card hovervib"><div class="card-glow green-glow"></div><div class="stat-label">New This Month</div><div class="stat-value">12</div><span class="stat-pill green-pill">+8% growth</span></div>
           <div class="stat-card glass-card teal-card hovervib"><div class="card-glow teal-glow"></div><div class="stat-label">Need Follow-up</div><div class="stat-value">7</div><span class="stat-pill red-pill">Action needed</span></div>
           <div class="stat-card glass-card purple-card hovervib"><div class="card-glow purple-glow"></div><div class="stat-label">VIP Clients</div><div class="stat-value">19</div><span class="stat-pill blue-pill">Priority tier</span></div>
         </div>
-        <div class="widget glass-widget">
-          <div class="widget-title">Client List</div>
-          <table class="ticket-table">
-            <thead><tr><th>Name</th><th>Email</th><th>Account Type</th><th>Last Contact</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr class="hovervib"><td>Sarah Mitchell</td><td>s.mitchell@email.com</td><td><span class="pill open-pill">VIP</span></td><td>Today</td><td><span class="pill res-pill">Active</span></td></tr>
-              <tr class="hovervib"><td>James Kim</td><td>james.k@email.com</td><td>Standard</td><td>Today</td><td><span class="pill prog-pill">Follow-up</span></td></tr>
-              <tr class="hovervib"><td>Lena Rossi</td><td>lena.r@email.com</td><td>Standard</td><td>Yesterday</td><td><span class="pill res-pill">Resolved</span></td></tr>
-              <tr class="hovervib"><td>Omar Farooq</td><td>omar.f@email.com</td><td><span class="pill open-pill">VIP</span></td><td>Yesterday</td><td><span class="pill res-pill">Active</span></td></tr>
-              <tr class="hovervib"><td>Priya Nair</td><td>priya.n@email.com</td><td>Standard</td><td>2 days ago</td><td><span class="pill res-pill">Resolved</span></td></tr>
-            </tbody>
-          </table>
+        <div class="widget glass-widget"><div class="widget-title">Client List</div>
+          <table class="ticket-table"><thead><tr><th>Name</th><th>Email</th><th>Account Type</th><th>Last Contact</th><th>Status</th></tr></thead><tbody>
+            <tr class="hovervib"><td>Sarah Mitchell</td><td>s.mitchell@email.com</td><td><span class="pill open-pill">VIP</span></td><td>Today</td><td><span class="pill res-pill">Active</span></td></tr>
+            <tr class="hovervib"><td>James Kim</td><td>james.k@email.com</td><td>Standard</td><td>Today</td><td><span class="pill prog-pill">Follow-up</span></td></tr>
+            <tr class="hovervib"><td>Lena Rossi</td><td>lena.r@email.com</td><td>Standard</td><td>Yesterday</td><td><span class="pill res-pill">Resolved</span></td></tr>
+            <tr class="hovervib"><td>Omar Farooq</td><td>omar.f@email.com</td><td><span class="pill open-pill">VIP</span></td><td>Yesterday</td><td><span class="pill res-pill">Active</span></td></tr>
+            <tr class="hovervib"><td>Priya Nair</td><td>priya.n@email.com</td><td>Standard</td><td>2 days ago</td><td><span class="pill res-pill">Resolved</span></td></tr>
+          </tbody></table>
         </div>
       </div>
 
-      <!-- ── ESCALATIONS ── -->
+      <!-- ESCALATIONS -->
       <div class="section hidden" id="section-Escalations">
-        <div class="greeting">🚨 Escalations</div>
-        <div class="subtext">Issues escalated to senior support or management</div>
+        <div class="greeting">🚨 Escalations</div><div class="subtext">Issues escalated to senior support or management</div>
         <div class="stats-grid">
           <div class="stat-card glass-card teal-card hovervib"><div class="card-glow teal-glow"></div><div class="stat-label">Open Escalations</div><div class="stat-value">4</div><span class="stat-pill red-pill">Needs review</span></div>
           <div class="stat-card glass-card blue-card hovervib"><div class="card-glow blue-glow"></div><div class="stat-label">Resolved This Week</div><div class="stat-value">9</div><span class="stat-pill green-pill">Good progress</span></div>
           <div class="stat-card glass-card purple-card hovervib"><div class="card-glow purple-glow"></div><div class="stat-label">Avg Resolution</div><div class="stat-value">6.3h</div><span class="stat-pill blue-pill">Target: 8h</span></div>
           <div class="stat-card glass-card green-card hovervib"><div class="card-glow green-glow"></div><div class="stat-label">Escalation Rate</div><div class="stat-value">8%</div><span class="stat-pill green-pill">Below target</span></div>
         </div>
-        <div class="widget glass-widget">
-          <div class="widget-title">Active Escalations</div>
-          <table class="ticket-table">
-            <thead><tr><th>Ticket</th><th>Client</th><th>Reason</th><th>Escalated To</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr class="hovervib"><td>#5821</td><td>Sarah M.</td><td>Withdrawal blocked 48h</td><td>Finance Team</td><td><span class="pill open-pill">Pending</span></td></tr>
-              <tr class="hovervib"><td>#5800</td><td>Reza K.</td><td>Account suspended wrongly</td><td>Compliance</td><td><span class="pill prog-pill">In Review</span></td></tr>
-              <tr class="hovervib"><td>#5789</td><td>Nina S.</td><td>Large deposit missing</td><td>Back Office</td><td><span class="pill prog-pill">In Review</span></td></tr>
-              <tr class="hovervib"><td>#5771</td><td>Chris L.</td><td>KYC rejection appeal</td><td>Manager</td><td><span class="pill res-pill">Resolved</span></td></tr>
-            </tbody>
-          </table>
+        <div class="widget glass-widget"><div class="widget-title">Active Escalations</div>
+          <table class="ticket-table"><thead><tr><th>Ticket</th><th>Client</th><th>Reason</th><th>Escalated To</th><th>Status</th></tr></thead><tbody>
+            <tr class="hovervib"><td>#5821</td><td>Sarah M.</td><td>Withdrawal blocked 48h</td><td>Finance Team</td><td><span class="pill open-pill">Pending</span></td></tr>
+            <tr class="hovervib"><td>#5800</td><td>Reza K.</td><td>Account suspended wrongly</td><td>Compliance</td><td><span class="pill prog-pill">In Review</span></td></tr>
+            <tr class="hovervib"><td>#5789</td><td>Nina S.</td><td>Large deposit missing</td><td>Back Office</td><td><span class="pill prog-pill">In Review</span></td></tr>
+            <tr class="hovervib"><td>#5771</td><td>Chris L.</td><td>KYC rejection appeal</td><td>Manager</td><td><span class="pill res-pill">Resolved</span></td></tr>
+          </tbody></table>
         </div>
       </div>
 
-      <!-- ── PERFORMANCE ── -->
+      <!-- PERFORMANCE -->
       <div class="section hidden" id="section-Performance">
-        <div class="greeting">📈 Performance</div>
-        <div class="subtext">Your support metrics this month</div>
+        <div class="greeting">📈 Performance</div><div class="subtext">Your support metrics this month</div>
         <div class="stats-grid">
           <div class="stat-card glass-card green-card hovervib"><div class="card-glow green-glow"></div><div class="stat-label">Tickets Closed</div><div class="stat-value">142</div><span class="stat-pill green-pill">This month</span></div>
           <div class="stat-card glass-card blue-card hovervib"><div class="card-glow blue-glow"></div><div class="stat-label">Avg Response</div><div class="stat-value">3.2m</div><span class="stat-pill blue-pill">Top 10%</span></div>
           <div class="stat-card glass-card purple-card hovervib"><div class="card-glow purple-glow"></div><div class="stat-label">CSAT Score</div><div class="stat-value">94%</div><span class="stat-pill green-pill">Excellent</span></div>
           <div class="stat-card glass-card teal-card hovervib"><div class="card-glow teal-glow"></div><div class="stat-label">FCR Rate</div><div class="stat-value">73%</div><span class="stat-pill blue-pill">Above avg</span></div>
         </div>
-        <div class="widget glass-widget">
-          <div class="widget-title">Monthly Breakdown</div>
+        <div class="widget glass-widget"><div class="widget-title">Monthly Breakdown</div>
           <div class="perf-list">
             <div class="perf-item"><div class="perf-top"><span>Tickets resolved</span><span>142/180</span></div><div class="pbar-wrap"><div class="pbar" style="width:79%;background:linear-gradient(90deg,#4361ee,#818cf8)"></div></div></div>
             <div class="perf-item"><div class="perf-top"><span>Customer satisfaction</span><span>94%</span></div><div class="pbar-wrap"><div class="pbar" style="width:94%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div></div>
@@ -361,59 +241,58 @@
         </div>
       </div>
 
-      <!-- ── KNOWLEDGE BASE ── -->
+      <!-- KNOWLEDGE BASE -->
       <div class="section hidden" id="section-Knowledge Base">
-        <div class="greeting">🔍 Knowledge Base</div>
-        <div class="subtext">Quick reference guides and support articles</div>
+        <div class="greeting">🔍 Knowledge Base</div><div class="subtext">Quick reference guides and support articles</div>
         <div class="stats-grid">
           <div class="stat-card glass-card blue-card hovervib"><div class="card-glow blue-glow"></div><div class="stat-label">Total Articles</div><div class="stat-value">84</div><span class="stat-pill blue-pill">Available</span></div>
           <div class="stat-card glass-card green-card hovervib"><div class="card-glow green-glow"></div><div class="stat-label">Most Used</div><div class="stat-value">KYC</div><span class="stat-pill green-pill">This week</span></div>
           <div class="stat-card glass-card purple-card hovervib"><div class="card-glow purple-glow"></div><div class="stat-label">Recently Added</div><div class="stat-value">3</div><span class="stat-pill blue-pill">New articles</span></div>
           <div class="stat-card glass-card teal-card hovervib"><div class="card-glow teal-glow"></div><div class="stat-label">Your Searches</div><div class="stat-value">27</div><span class="stat-pill blue-pill">This month</span></div>
         </div>
-        <div class="widget glass-widget">
-          <div class="widget-title">Popular Articles</div>
-          <table class="ticket-table">
-            <thead><tr><th>Article</th><th>Category</th><th>Views</th><th>Helpful</th></tr></thead>
-            <tbody>
-              <tr class="hovervib"><td>📄 How to complete KYC verification</td><td>Compliance</td><td>312</td><td><span class="pill res-pill">98%</span></td></tr>
-              <tr class="hovervib"><td>📄 Withdrawal processing times</td><td>Finance</td><td>278</td><td><span class="pill res-pill">95%</span></td></tr>
-              <tr class="hovervib"><td>📄 How to reset your password</td><td>Account</td><td>201</td><td><span class="pill res-pill">99%</span></td></tr>
-              <tr class="hovervib"><td>📄 Deposit methods and limits</td><td>Finance</td><td>189</td><td><span class="pill open-pill">91%</span></td></tr>
-              <tr class="hovervib"><td>📄 MT4 platform connection guide</td><td>Platform</td><td>154</td><td><span class="pill prog-pill">87%</span></td></tr>
-            </tbody>
-          </table>
+        <div class="widget glass-widget"><div class="widget-title">Popular Articles</div>
+          <table class="ticket-table"><thead><tr><th>Article</th><th>Category</th><th>Views</th><th>Helpful</th></tr></thead><tbody>
+            <tr class="hovervib"><td>📄 How to complete KYC verification</td><td>Compliance</td><td>312</td><td><span class="pill res-pill">98%</span></td></tr>
+            <tr class="hovervib"><td>📄 Withdrawal processing times</td><td>Finance</td><td>278</td><td><span class="pill res-pill">95%</span></td></tr>
+            <tr class="hovervib"><td>📄 How to reset your password</td><td>Account</td><td>201</td><td><span class="pill res-pill">99%</span></td></tr>
+            <tr class="hovervib"><td>📄 Deposit methods and limits</td><td>Finance</td><td>189</td><td><span class="pill open-pill">91%</span></td></tr>
+            <tr class="hovervib"><td>📄 MT4 platform connection guide</td><td>Platform</td><td>154</td><td><span class="pill prog-pill">87%</span></td></tr>
+          </tbody></table>
         </div>
       </div>
 
-      <!-- ── PROFILE ── -->
+      <!-- PROFILE -->
       <div class="section hidden" id="section-Profile">
         <div class="greeting">👤 My Profile</div>
         <div class="subtext">Your agent information and account details</div>
         <div class="profile-layout">
+
+          <!-- LEFT: AVATAR CARD -->
           <div class="profile-card glass-widget">
             <div class="profile-avatar-wrap">
-              <svg viewBox="0 0 120 120" width="110" height="110">
-                <defs>
-                  <radialGradient id="pavg" cx="50%" cy="30%" r="65%">
-                    <stop offset="0%" stop-color="#818cf8"/>
-                    <stop offset="40%" stop-color="#4361ee"/>
-                    <stop offset="100%" stop-color="#1e1b4b"/>
-                  </radialGradient>
-                  <radialGradient id="pavg2" cx="50%" cy="30%" r="60%">
-                    <stop offset="0%" stop-color="#a78bfa"/>
-                    <stop offset="100%" stop-color="#4361ee"/>
-                  </radialGradient>
-                </defs>
-                <circle cx="60" cy="60" r="58" fill="url(#pavg)" stroke="rgba(129,140,248,0.5)" stroke-width="2"/>
-                <circle cx="60" cy="44" r="20" fill="url(#pavg2)"/>
-                <circle cx="60" cy="43" r="16" fill="rgba(255,255,255,0.92)"/>
-                <ellipse cx="60" cy="90" rx="28" ry="18" fill="url(#pavg2)" opacity="0.9"/>
-                <ellipse cx="60" cy="88" rx="24" ry="15" fill="rgba(255,255,255,0.82)"/>
-              </svg>
+              <div class="profile-avatar-circle" id="profileAvatarCircle">
+                <svg id="profileDefaultSvg" viewBox="0 0 120 120" width="110" height="110">
+                  <defs>
+                    <radialGradient id="pavg" cx="50%" cy="30%" r="65%"><stop offset="0%" stop-color="#818cf8"/><stop offset="40%" stop-color="#4361ee"/><stop offset="100%" stop-color="#1e1b4b"/></radialGradient>
+                    <radialGradient id="pavg2" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#4361ee"/></radialGradient>
+                  </defs>
+                  <circle cx="60" cy="60" r="58" fill="url(#pavg)" stroke="rgba(129,140,248,0.5)" stroke-width="2"/>
+                  <circle cx="60" cy="43" r="16" fill="rgba(255,255,255,0.92)"/>
+                  <ellipse cx="60" cy="88" rx="24" ry="15" fill="rgba(255,255,255,0.82)"/>
+                </svg>
+                <img id="profilePhoto" src="" alt="" style="display:none;width:110px;height:110px;border-radius:50%;object-fit:cover;"/>
+              </div>
               <div class="profile-ring-1"></div>
               <div class="profile-ring-2"></div>
             </div>
+
+            <!-- UPLOAD PHOTO BUTTON -->
+            <input type="file" id="photoInput" accept="image/*" style="display:none"/>
+            <button class="upload-btn" id="uploadPhotoBtn">
+              <span>📷</span> Upload Photo
+            </button>
+            <button class="remove-btn hidden" id="removePhotoBtn">✕ Remove Photo</button>
+
             <div class="profile-name">Ardalan Varshowsaz</div>
             <div class="profile-role">Chat Support Agent</div>
             <div class="profile-company">Opofinance</div>
@@ -422,8 +301,10 @@
               <span class="p-badge blue-badge">⭐ Senior Agent</span>
             </div>
           </div>
+
+          <!-- RIGHT: INFO + STATS -->
           <div class="profile-info-col">
-            <div class="widget glass-widget profile-info-card">
+            <div class="widget glass-widget">
               <div class="widget-title">Agent Information</div>
               <div class="info-grid">
                 <div class="info-row hovervib"><span class="info-label">Full Name</span><span class="info-val">Ardalan Varshowsaz</span></div>
@@ -436,7 +317,7 @@
                 <div class="info-row hovervib"><span class="info-label">Status</span><span class="info-val"><span class="pill res-pill">Active</span></span></div>
               </div>
             </div>
-            <div class="widget glass-widget profile-stats-card">
+            <div class="widget glass-widget">
               <div class="widget-title">Career Stats</div>
               <div class="perf-list">
                 <div class="perf-item"><div class="perf-top"><span>Total tickets resolved</span><span>1,284</span></div><div class="pbar-wrap"><div class="pbar" style="width:90%;background:linear-gradient(90deg,#4361ee,#818cf8)"></div></div></div>
