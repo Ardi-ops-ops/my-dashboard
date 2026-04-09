@@ -437,3 +437,7 @@ body {
   border-radius: 99px;
   transition: width 0.5s ease;
 }
+
+.section { display: block; }
+.section.hidden { display: none; }
+
