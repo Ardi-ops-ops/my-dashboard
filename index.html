@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ardalan Varshowsaz – Support Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div class="page" id="loginPage">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="logo-icon">💹</div>
+        <span>Opofinance</span>
+      </div>
+      <h2>Welcome back</h2>
+      <p class="subtitle">Sign in to your support portal</p>
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="email" id="loginEmail" placeholder="ardalan@opofinance.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="••••••••" />
+      </div>
+      <button class="btn-primary" id="loginBtn">Sign In</button>
+      <div class="auth-footer">Don't have an account? <a class="link" id="goSignup">Sign up</a></div>
+    </div>
+  </div>
+
+  <!-- SIGNUP PAGE -->
+  <div class="page hidden" id="signupPage">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="logo-icon">💹</div>
+        <span>Opofinance</span>
+      </div>
+      <h2>Create Account</h2>
+      <p class="subtitle">Join the support team portal</p>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="signupName" placeholder="Ardalan Varshowsaz" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="signupEmail" placeholder="ardalan@opofinance.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="signupPass" placeholder="••••••••" />
+      </div>
+      <button class="btn-primary" id="signupBtn">Create Account</button>
+      <div class="auth-footer">Already have an account? <a class="link" id="goLogin">Sign in</a></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div class="app hidden" id="dashboardPage">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">💹</div>
+        <span>Opofinance</span>
+      </div>
+      <div class="sidebar-section">Main</div>
+      <div class="nav-item active" data-page="Dashboard">🏠 Dashboard</div>
+      <div class="nav-item" data-page="Live Chats">💬 Live Chats</div>
+      <div class="nav-item" data-page="Tickets">🎫 Tickets</div>
+      <div class="nav-item" data-page="Clients">👥 Clients</div>
+      <div class="sidebar-section">Tools</div>
+      <div class="nav-item" data-page="Escalations">🚨 Escalations</div>
+      <div class="nav-item" data-page="Performance">📈 Performance</div>
+      <div class="nav-item" data-page="Knowledge Base">🔍 Knowledge Base</div>
+      <div class="sidebar-spacer"></div>
+      <div class="nav-item logout" id="logoutBtn">🚪 Sign Out</div>
+    </aside>
+
+    <div class="main">
+      <div class="topbar">
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="topbar-right">
+          <div class="user-info">
+            <div class="name">Ardalan Varshowsaz</div>
+            <div class="role">Chat Support Agent</div>
+          </div>
+          <div class="avatar">AV</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="greeting">Good morning, Ardalan 👋</div>
+        <div class="subtext">Here's your support overview for today</div>
+
+        <div class="stats-grid">
+          <div class="stat-card card-blue">
+            <div class="stat-label">Open Tickets</div>
+            <div class="stat-value">24</div>
+            <span class="stat-badge badge-red">+4 since yesterday</span>
+          </div>
+          <div class="stat-card card-green">
+            <div class="stat-label">Resolved Today</div>
+            <div class="stat-value">11</div>
+            <span class="stat-badge badge-green">On track</span>
+          </div>
+          <div class="stat-card card-purple">
+            <div class="stat-label">Avg Response Time</div>
+            <div class="stat-value">3.2m</div>
+            <span class="stat-badge badge-blue">Target: 5m</span>
+          </div>
+          <div class="stat-card card-orange">
+            <div class="stat-label">CSAT Score</div>
+            <div class="stat-value">94%</div>
+            <span class="stat-badge badge-green">Excellent</span>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="widget">
+            <div class="widget-title">Recent Tickets <span class="badge">Last 24 hrs</span></div>
+            <table class="ticket-table">
+              <thead>
+                <tr>
+                  <th>Ticket</th><th>Client</th><th>Issue</th><th>Priority</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>#5821</td><td>Sarah M.</td><td>Withdrawal delay</td><td><span class="priority p-high"></span>High</td><td><span class="status-pill s-open">Open</span></td></tr>
+                <tr><td>#5820</td><td>James K.</td><td>Verification docs</td><td><span class="priority p-med"></span>Medium</td><td><span class="status-pill s-progress">In Progress</span></td></tr>
+                <tr><td>#5819</td><td>Lena R.</td><td>Login issue</td><td><span class="priority p-low"></span>Low</td><td><span class="status-pill s-resolved">Resolved</span></td></tr>
+                <tr><td>#5817</td><td>Omar F.</td><td>Deposit not credited</td><td><span class="priority p-high"></span>High</td><td><span class="status-pill s-open">Open</span></td></tr>
+                <tr><td>#5815</td><td>Priya N.</td><td>Platform connection</td><td><span class="priority p-med"></span>Medium</td><td><span class="status-pill s-resolved">Resolved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="widget">
+            <div class="widget-title">Today's Performance</div>
+            <div class="qstat-list">
+              <div class="qstat-block">
+                <div class="qstat-item"><span class="qstat-label">Tickets handled</span><span class="qstat-val">11 / 20</span></div>
+                <div class="progress-bar-wrap"><div class="progress-bar" style="width:55%;background:#4361ee"></div></div>
+              </div>
+              <div class="qstat-block">
+                <div class="qstat-item"><span class="qstat-label">First contact resolution</span><span class="qstat-val">73%</span></div>
+                <div class="progress-bar-wrap"><div class="progress-bar" style="width:73%;background:#22c55e"></div></div>
+              </div>
+              <div class="qstat-block">
+                <div class="qstat-item"><span class="qstat-label">Escalations raised</span><span class="qstat-val">2</span></div>
+                <div class="progress-bar-wrap"><div class="progress-bar" style="width:20%;background:#ef4444"></div></div>
+              </div>
+              <div class="qstat-block">
+                <div class="qstat-item"><span class="qstat-label">Client satisfaction</span><span class="qstat-val">94%</span></div>
+                <div class="progress-bar-wrap"><div class="progress-bar" style="width:94%;background:#a855f7"></div></div>
+              </div>
+              <div class="qstat-block">
+                <div class="qstat-item"><span class="qstat-label">Chats active now</span><span class="qstat-val">3</span></div>
+                <div class="progress-bar-wrap"><div class="progress-bar" style="width:30%;background:#f59e0b"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
