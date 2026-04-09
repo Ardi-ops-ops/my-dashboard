@@ -2,7 +2,66 @@ const loginPage     = document.getElementById('loginPage');
 const signupPage    = document.getElementById('signupPage');
 const dashboardPage = document.getElementById('dashboardPage');
 const pageTitle     = document.getElementById('pageTitle');
+const html          = document.documentElement;
 
+// ── THEME TOGGLE ──────────────────────────────────────────────
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon   = document.getElementById('themeIcon');
+const themeLabel  = document.getElementById('themeLabel');
+let isDark = true;
+
+themeToggle.addEventListener('click', function () {
+  isDark = !isDark;
+  html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  themeIcon.textContent  = isDark ? '🌙' : '☀️';
+  themeLabel.textContent = isDark ? 'Dark' : 'Light';
+  themeToggle.classList.add('click-shake');
+  setTimeout(() => themeToggle.classList.remove('click-shake'), 400);
+});
+
+// ── PHOTO UPLOAD ─────────────────────────────────────────────
+const photoInput       = document.getElementById('photoInput');
+const uploadPhotoBtn   = document.getElementById('uploadPhotoBtn');
+const removePhotoBtn   = document.getElementById('removePhotoBtn');
+const profilePhoto     = document.getElementById('profilePhoto');
+const profileDefaultSvg = document.getElementById('profileDefaultSvg');
+const topbarPhoto      = document.getElementById('topbarPhoto');
+const defaultAvatarSvg = document.getElementById('defaultAvatarSvg');
+
+uploadPhotoBtn.addEventListener('click', () => photoInput.click());
+
+photoInput.addEventListener('change', function () {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const src = e.target.result;
+    // Update profile page avatar
+    profilePhoto.src = src;
+    profilePhoto.style.display = 'block';
+    profileDefaultSvg.style.display = 'none';
+    // Update topbar avatar
+    topbarPhoto.src = src;
+    topbarPhoto.style.display = 'block';
+    defaultAvatarSvg.style.display = 'none';
+    // Show remove button
+    removePhotoBtn.classList.remove('hidden');
+  };
+  reader.readAsDataURL(file);
+});
+
+removePhotoBtn.addEventListener('click', function () {
+  profilePhoto.src = '';
+  profilePhoto.style.display = 'none';
+  profileDefaultSvg.style.display = 'block';
+  topbarPhoto.src = '';
+  topbarPhoto.style.display = 'none';
+  defaultAvatarSvg.style.display = 'block';
+  removePhotoBtn.classList.add('hidden');
+  photoInput.value = '';
+});
+
+// ── PAGE / SECTION HELPERS ───────────────────────────────────
 function showPage(page) {
   [loginPage, signupPage, dashboardPage].forEach(p => p.classList.add('hidden'));
   page.classList.remove('hidden');
@@ -25,7 +84,7 @@ function setActiveNav(name) {
   if (match) match.classList.add('active');
 }
 
-// Login
+// ── AUTH ─────────────────────────────────────────────────────
 document.getElementById('loginBtn').addEventListener('click', function () {
   const email = document.getElementById('loginEmail').value.trim();
   const pass  = document.getElementById('loginPass').value.trim();
@@ -35,7 +94,6 @@ document.getElementById('loginBtn').addEventListener('click', function () {
   setActiveNav('Dashboard');
 });
 
-// Sign Up
 document.getElementById('signupBtn').addEventListener('click', function () {
   const name  = document.getElementById('signupName').value.trim();
   const email = document.getElementById('signupEmail').value.trim();
@@ -46,14 +104,11 @@ document.getElementById('signupBtn').addEventListener('click', function () {
   setActiveNav('Dashboard');
 });
 
-// Switch between login and signup
 document.getElementById('goSignup').addEventListener('click', () => showPage(signupPage));
-document.getElementById('goLogin').addEventListener('click', ()   => showPage(loginPage));
-
-// Logout
+document.getElementById('goLogin').addEventListener('click',  () => showPage(loginPage));
 document.getElementById('logoutBtn').addEventListener('click', () => showPage(loginPage));
 
-// Sidebar navigation
+// ── SIDEBAR NAV ──────────────────────────────────────────────
 document.querySelectorAll('.nav-item[data-page]').forEach(function (item) {
   item.addEventListener('click', function () {
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -62,24 +117,15 @@ document.querySelectorAll('.nav-item[data-page]').forEach(function (item) {
   });
 });
 
-// Avatar → Profile page
+// ── AVATAR → PROFILE ─────────────────────────────────────────
 document.getElementById('topbarAvatar').addEventListener('click', function () {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   showSection('Profile');
   pageTitle.textContent = 'My Profile';
 });
 
-// Sidebar logo → Dashboard home
+// ── LOGO → DASHBOARD ─────────────────────────────────────────
 document.getElementById('sidebarLogo').addEventListener('click', function () {
   showSection('Dashboard');
   setActiveNav('Dashboard');
 });
-
-// Login page logo → no action needed (already on login)
-const loginLogo = document.getElementById('loginLogo');
-if (loginLogo) {
-  loginLogo.addEventListener('click', function () {
-    this.classList.add('click-shake');
-    setTimeout(() => this.classList.remove('click-shake'), 400);
-  });
-}
