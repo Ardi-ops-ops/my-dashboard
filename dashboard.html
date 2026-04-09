@@ -1,348 +1,273 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ardalan Varshowsaz – Support Dashboard</title>
+
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', sans-serif; background: #f4f6fa; color: #1a1a2e; min-height: 100vh; }
+  body { font-family: var(--font-sans); }
 
-  /* AUTH PAGES */
-  .auth-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f4f6fa; }
-  .auth-card { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 2.5rem 2rem; width: 100%; max-width: 400px; }
-  .auth-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 2rem; justify-content: center; }
-  .auth-logo .logo-icon { width: 36px; height: 36px; background: #4361ee; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-  .auth-logo .logo-icon svg { width: 20px; height: 20px; fill: white; }
-  .auth-logo span { font-size: 18px; font-weight: 700; color: #1a1a2e; }
-  .auth-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 0.25rem; }
-  .auth-card p { font-size: 14px; color: #64748b; margin-bottom: 1.75rem; }
-  .form-group { margin-bottom: 1rem; }
-  .form-group label { display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px; }
-  .form-group input { width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 14px; outline: none; transition: border 0.2s; }
-  .form-group input:focus { border-color: #4361ee; }
-  .btn-primary { width: 100%; padding: 11px; background: #4361ee; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
-  .btn-primary:hover { background: #3451d1; }
-  .auth-footer { text-align: center; font-size: 13px; color: #64748b; margin-top: 1.25rem; }
-  .auth-footer a { color: #4361ee; text-decoration: none; font-weight: 500; cursor: pointer; }
+  .dash { padding: 20px; background: transparent; }
 
-  /* DASHBOARD */
-  .app { display: flex; min-height: 100vh; }
-  .sidebar { width: 240px; background: #1a1a2e; color: white; display: flex; flex-direction: column; padding: 1.5rem 0; flex-shrink: 0; }
-  .sidebar-logo { display: flex; align-items: center; gap: 10px; padding: 0 1.5rem 1.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .sidebar-logo .logo-icon { width: 32px; height: 32px; background: #4361ee; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-  .sidebar-logo .logo-icon svg { width: 18px; height: 18px; fill: white; }
-  .sidebar-logo span { font-size: 16px; font-weight: 700; }
-  .sidebar-section { padding: 1.25rem 1.5rem 0.5rem; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; }
-  .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 1.5rem; font-size: 14px; color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.15s; border-left: 3px solid transparent; }
-  .nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
-  .nav-item.active { background: rgba(67,97,238,0.18); color: white; border-left-color: #4361ee; }
-  .nav-item svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
-  .sidebar-spacer { flex: 1; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px; border-radius: var(--border-radius-lg);
+    background: linear-gradient(135deg, #1a4fa0 0%, #2563c8 50%, #1e88e5 100%);
+    margin-bottom: 20px;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 500; color: #fff; border: 1.5px solid rgba(255,255,255,0.4);
+  }
+  .topbar-name { font-size: 16px; font-weight: 500; color: #fff; }
+  .topbar-role { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .badge-online {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.15); border-radius: 20px;
+    padding: 5px 12px; font-size: 12px; color: #fff;
+  }
+  .dot-green { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; display: inline-block; }
+  .opologo {
+    font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.15); border-radius: 8px; padding: 5px 12px;
+  }
 
-  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-  .topbar { background: white; border-bottom: 1px solid #e2e8f0; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-  .topbar h1 { font-size: 18px; font-weight: 700; }
-  .topbar-right { display: flex; align-items: center; gap: 1rem; }
-  .avatar { width: 38px; height: 38px; border-radius: 50%; background: #4361ee; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: white; }
-  .user-info { text-align: right; }
-  .user-info .name { font-size: 14px; font-weight: 600; }
-  .user-info .role { font-size: 12px; color: #64748b; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 20px; }
+  .metric-card {
+    border-radius: var(--border-radius-lg); padding: 16px;
+    border: 0.5px solid var(--color-border-tertiary);
+    background: var(--color-background-primary);
+  }
+  .metric-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; margin-bottom: 10px;
+  }
+  .metric-val { font-size: 24px; font-weight: 500; color: var(--color-text-primary); }
+  .metric-lbl { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+  .metric-delta { font-size: 11px; margin-top: 6px; display: flex; align-items: center; gap: 4px; }
+  .up { color: #16a34a; } .down { color: #dc2626; }
 
-  .content { flex: 1; padding: 2rem; overflow-y: auto; }
-  .greeting { font-size: 22px; font-weight: 700; margin-bottom: 0.25rem; }
-  .subtext { font-size: 14px; color: #64748b; margin-bottom: 2rem; }
+  .mid { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .card {
+    border-radius: var(--border-radius-lg); padding: 18px;
+    border: 0.5px solid var(--color-border-tertiary);
+    background: var(--color-background-primary);
+  }
+  .card-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 14px; }
 
-  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
-  .stat-card { background: white; border-radius: 14px; border: 1px solid #e2e8f0; padding: 1.25rem 1.5rem; }
-  .stat-label { font-size: 12px; color: #64748b; font-weight: 500; margin-bottom: 0.5rem; }
-  .stat-value { font-size: 28px; font-weight: 700; color: #1a1a2e; }
-  .stat-badge { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
-  .badge-green { background: #dcfce7; color: #166534; }
-  .badge-red { background: #fee2e2; color: #991b1b; }
-  .badge-blue { background: #dbeafe; color: #1e40af; }
-  .badge-amber { background: #fef3c7; color: #92400e; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
+  .bar-wrap { display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end; }
+  .bar { width: 100%; border-radius: 4px 4px 0 0; transition: opacity .2s; cursor: pointer; }
+  .bar:hover { opacity: 0.8; }
+  .bar-lbl { font-size: 10px; color: var(--color-text-secondary); margin-top: 4px; }
 
-  .two-col { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  .widget { background: white; border-radius: 14px; border: 1px solid #e2e8f0; padding: 1.5rem; }
-  .widget-title { font-size: 15px; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-  .widget-title span.badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; background: #f1f5f9; color: #64748b; }
+  .tickets { display: flex; flex-direction: column; gap: 8px; }
+  .ticket {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px; border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-tertiary);
+    background: var(--color-background-secondary); cursor: pointer;
+    transition: background .15s;
+  }
+  .ticket:hover { background: var(--color-background-tertiary); }
+  .ticket-left { display: flex; align-items: center; gap: 10px; }
+  .ticon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .ticket-id { font-size: 11px; color: var(--color-text-secondary); }
+  .ticket-sub { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .priority {
+    font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: 20px;
+  }
+  .p-high { background: #fee2e2; color: #991b1b; }
+  .p-med  { background: #fef3c7; color: #92400e; }
+  .p-low  { background: #dcfce7; color: #166534; }
 
-  /* Ticket table */
-  .ticket-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .ticket-table th { text-align: left; font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 0 10px; border-bottom: 1px solid #e2e8f0; }
-  .ticket-table td { padding: 12px 0; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
-  .ticket-table tr:last-child td { border-bottom: none; }
-  .priority { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
-  .p-high { background: #ef4444; }
-  .p-med { background: #f59e0b; }
-  .p-low { background: #22c55e; }
-  .status-pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
-  .s-open { background: #dbeafe; color: #1e40af; }
-  .s-progress { background: #fef3c7; color: #92400e; }
-  .s-resolved { background: #dcfce7; color: #166534; }
+  .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-  /* Quick stats list */
-  .qstat-list { display: flex; flex-direction: column; gap: 14px; }
-  .qstat-item { display: flex; align-items: center; justify-content: space-between; }
-  .qstat-label { font-size: 13px; color: #374151; }
-  .qstat-val { font-size: 14px; font-weight: 700; color: #1a1a2e; }
-  .progress-bar-wrap { background: #f1f5f9; border-radius: 99px; height: 6px; width: 100%; margin-top: 4px; }
-  .progress-bar { height: 6px; border-radius: 99px; background: #4361ee; }
+  .donut-wrap { display: flex; align-items: center; gap: 18px; }
+  .legend { display: flex; flex-direction: column; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--color-text-secondary); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-  .hidden { display: none; }
+  .recent { display: flex; flex-direction: column; gap: 8px; }
+  .act {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--color-text-secondary);
+    padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .act:last-child { border-bottom: none; }
+  .act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .act-time { margin-left: auto; font-size: 11px; }
+
+  .satisfaction { display: flex; flex-direction: column; gap: 10px; }
+  .sat-row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .sat-label { min-width: 50px; color: var(--color-text-secondary); }
+  .sat-bar-bg { flex: 1; height: 6px; border-radius: 3px; background: var(--color-background-secondary); }
+  .sat-bar-fill { height: 100%; border-radius: 3px; }
+  .sat-pct { min-width: 34px; text-align: right; font-size: 11px; font-weight: 500; color: var(--color-text-secondary); }
 </style>
-</head>
-<body>
 
-<!-- LOGIN PAGE -->
-<div class="auth-page" id="loginPage">
-  <div class="auth-card">
-    <div class="auth-logo">
-      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-      <span>Opofinance</span>
+<div class="dash">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="avatar">AV</div>
+      <div>
+        <div class="topbar-name">Ardalan Varshowsaz</div>
+        <div class="topbar-role">Support Agent — Opofinance</div>
+      </div>
     </div>
-    <h2>Welcome back</h2>
-    <p>Sign in to your support portal</p>
-    <div class="form-group">
-      <label>Email address</label>
-      <input type="email" id="loginEmail" placeholder="you@opofinance.com" />
+    <div class="topbar-right">
+      <div class="badge-online"><span class="dot-green"></span> Online</div>
+      <div class="opologo">Opofinance</div>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="loginPass" placeholder="••••••••" />
-    </div>
-    <button class="btn-primary" onclick="goToDashboard()">Sign in</button>
-    <div class="auth-footer">Don't have an account? <a onclick="showSignup()">Sign up</a></div>
   </div>
-</div>
 
-<!-- SIGNUP PAGE -->
-<div class="auth-page hidden" id="signupPage">
-  <div class="auth-card">
-    <div class="auth-logo">
-      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-      <span>Opofinance</span>
+  <!-- Metric cards -->
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="metric-icon" style="background:#eff6ff;">📋</div>
+      <div class="metric-val">42</div>
+      <div class="metric-lbl">Open Tickets</div>
+      <div class="metric-delta up">▲ 5 since yesterday</div>
     </div>
-    <h2>Create account</h2>
-    <p>Join the support team portal</p>
-    <div class="form-group">
-      <label>Full name</label>
-      <input type="text" placeholder="Your full name" />
+    <div class="metric-card">
+      <div class="metric-icon" style="background:#f0fdf4;">✅</div>
+      <div class="metric-val">18</div>
+      <div class="metric-lbl">Resolved Today</div>
+      <div class="metric-delta up">▲ 3 above average</div>
     </div>
-    <div class="form-group">
-      <label>Email address</label>
-      <input type="email" placeholder="you@opofinance.com" />
+    <div class="metric-card">
+      <div class="metric-icon" style="background:#fefce8;">⚡</div>
+      <div class="metric-val">4.2<span style="font-size:14px">m</span></div>
+      <div class="metric-lbl">Avg Response Time</div>
+      <div class="metric-delta up">▲ 12% faster this week</div>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" placeholder="••••••••" />
+    <div class="metric-card">
+      <div class="metric-icon" style="background:#fdf4ff;">⭐</div>
+      <div class="metric-val">4.8</div>
+      <div class="metric-lbl">CSAT Score</div>
+      <div class="metric-delta up">▲ 0.2 vs last month</div>
     </div>
-    <button class="btn-primary" onclick="goToDashboard()">Create account</button>
-    <div class="auth-footer">Already have an account? <a onclick="showLogin()">Sign in</a></div>
   </div>
-</div>
 
-<!-- DASHBOARD -->
-<div class="app hidden" id="dashboardPage">
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-      <span>Opofinance</span>
+  <!-- Middle row -->
+  <div class="mid">
+    <!-- Bar chart: weekly tickets -->
+    <div class="card">
+      <div class="card-title">Tickets this week</div>
+      <div class="bar-chart">
+        <div class="bar-wrap"><div class="bar" style="height:45%;background:#3b82f6;"></div><div class="bar-lbl">Mon</div></div>
+        <div class="bar-wrap"><div class="bar" style="height:65%;background:#6366f1;"></div><div class="bar-lbl">Tue</div></div>
+        <div class="bar-wrap"><div class="bar" style="height:55%;background:#8b5cf6;"></div><div class="bar-lbl">Wed</div></div>
+        <div class="bar-wrap"><div class="bar" style="height:80%;background:#ec4899;"></div><div class="bar-lbl">Thu</div></div>
+        <div class="bar-wrap"><div class="bar" style="height:70%;background:#f59e0b;"></div><div class="bar-lbl">Fri</div></div>
+        <div class="bar-wrap"><div class="bar" style="height:35%;background:#10b981;"></div><div class="bar-lbl">Sat</div></div>
+        <div class="bar-wrap"><div class="bar" style="height:28%;background:#06b6d4;"></div><div class="bar-lbl">Sun</div></div>
+      </div>
     </div>
-    <div class="sidebar-section">Main</div>
-    <div class="nav-item active">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Dashboard
-    </div>
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Live Chats
-    </div>
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      Tickets
-    </div>
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Clients
-    </div>
-    <div class="sidebar-section">Tools</div>
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.39 2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      Escalations
-    </div>
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      Performance
-    </div>
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      Knowledge Base
-    </div>
-    <div class="sidebar-spacer"></div>
-    <div class="nav-item" onclick="logout()">
-      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-      Sign out
-    </div>
-  </aside>
-
-  <div class="main">
-    <div class="topbar">
-      <h1>Support Dashboard</h1>
-      <div class="topbar-right">
-        <div class="user-info">
-          <div class="name">Ardalan Varshowsaz</div>
-          <div class="role">Chat Support Agent</div>
+    <!-- Ticket queue -->
+    <div class="card">
+      <div class="card-title">Active queue</div>
+      <div class="tickets">
+        <div class="ticket">
+          <div class="ticket-left">
+            <div class="ticon" style="background:#fee2e2;">🔴</div>
+            <div>
+              <div class="ticket-id">#TKT-0412</div>
+              <div class="ticket-sub">Withdrawal failed</div>
+            </div>
+          </div>
+          <span class="priority p-high">High</span>
         </div>
-        <div class="avatar">AV</div>
+        <div class="ticket">
+          <div class="ticket-left">
+            <div class="ticon" style="background:#fef3c7;">🟡</div>
+            <div>
+              <div class="ticket-id">#TKT-0411</div>
+              <div class="ticket-sub">KYC document issue</div>
+            </div>
+          </div>
+          <span class="priority p-med">Med</span>
+        </div>
+        <div class="ticket">
+          <div class="ticket-left">
+            <div class="ticon" style="background:#dcfce7;">🟢</div>
+            <div>
+              <div class="ticket-id">#TKT-0409</div>
+              <div class="ticket-sub">Password reset</div>
+            </div>
+          </div>
+          <span class="priority p-low">Low</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="bottom">
+    <!-- Donut: ticket categories -->
+    <div class="card">
+      <div class="card-title">Ticket categories</div>
+      <div class="donut-wrap">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#e5e7eb" stroke-width="18"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#3b82f6" stroke-width="18"
+            stroke-dasharray="57 182" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#8b5cf6" stroke-width="18"
+            stroke-dasharray="47 192" stroke-dashoffset="-57" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#10b981" stroke-width="18"
+            stroke-dasharray="38 201" stroke-dashoffset="-104" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#f59e0b" stroke-width="18"
+            stroke-dasharray="30 209" stroke-dashoffset="-142" transform="rotate(-90 50 50)"/>
+          <text x="50" y="47" text-anchor="middle" font-size="13" font-weight="500" fill="var(--color-text-primary)">42</text>
+          <text x="50" y="60" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)">tickets</text>
+        </svg>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#3b82f6;"></span>Payments (30%)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#8b5cf6;"></span>Accounts (25%)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span>KYC (20%)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span>Other (16%)</div>
+        </div>
       </div>
     </div>
 
-    <div class="content">
-      <div class="greeting">Good morning, Ardalan 👋</div>
-      <div class="subtext">Here's your support overview for today — Tuesday, April 8</div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label">Open Tickets</div>
-          <div class="stat-value">24</div>
-          <span class="stat-badge badge-red">+4 since yesterday</span>
+    <!-- Customer satisfaction bars -->
+    <div class="card">
+      <div class="card-title">Customer satisfaction</div>
+      <div class="satisfaction">
+        <div class="sat-row">
+          <div class="sat-label">Excellent</div>
+          <div class="sat-bar-bg"><div class="sat-bar-fill" style="width:72%;background:#3b82f6;"></div></div>
+          <div class="sat-pct">72%</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Resolved Today</div>
-          <div class="stat-value">11</div>
-          <span class="stat-badge badge-green">On track</span>
+        <div class="sat-row">
+          <div class="sat-label">Good</div>
+          <div class="sat-bar-bg"><div class="sat-bar-fill" style="width:18%;background:#8b5cf6;"></div></div>
+          <div class="sat-pct">18%</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Avg Response Time</div>
-          <div class="stat-value">3.2m</div>
-          <span class="stat-badge badge-blue">Target: 5m</span>
+        <div class="sat-row">
+          <div class="sat-label">Average</div>
+          <div class="sat-bar-bg"><div class="sat-bar-fill" style="width:7%;background:#f59e0b;"></div></div>
+          <div class="sat-pct">7%</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">CSAT Score</div>
-          <div class="stat-value">94%</div>
-          <span class="stat-badge badge-green">Excellent</span>
-        </div>
-      </div>
-
-      <div class="two-col">
-        <div class="widget">
-          <div class="widget-title">Recent Tickets <span class="badge">Last 24 hrs</span></div>
-          <table class="ticket-table">
-            <thead>
-              <tr>
-                <th>Ticket</th>
-                <th>Client</th>
-                <th>Issue</th>
-                <th>Priority</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#5821</td>
-                <td>Sarah M.</td>
-                <td>Withdrawal delay</td>
-                <td><span class="priority p-high"></span>High</td>
-                <td><span class="status-pill s-open">Open</span></td>
-              </tr>
-              <tr>
-                <td>#5820</td>
-                <td>James K.</td>
-                <td>Verification docs</td>
-                <td><span class="priority p-med"></span>Medium</td>
-                <td><span class="status-pill s-progress">In Progress</span></td>
-              </tr>
-              <tr>
-                <td>#5819</td>
-                <td>Lena R.</td>
-                <td>Login issue</td>
-                <td><span class="priority p-low"></span>Low</td>
-                <td><span class="status-pill s-resolved">Resolved</span></td>
-              </tr>
-              <tr>
-                <td>#5817</td>
-                <td>Omar F.</td>
-                <td>Deposit not credited</td>
-                <td><span class="priority p-high"></span>High</td>
-                <td><span class="status-pill s-open">Open</span></td>
-              </tr>
-              <tr>
-                <td>#5815</td>
-                <td>Priya N.</td>
-                <td>Platform connection</td>
-                <td><span class="priority p-med"></span>Medium</td>
-                <td><span class="status-pill s-resolved">Resolved</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="sat-row">
+          <div class="sat-label">Poor</div>
+          <div class="sat-bar-bg"><div class="sat-bar-fill" style="width:3%;background:#ef4444;"></div></div>
+          <div class="sat-pct">3%</div>
         </div>
 
-        <div class="widget">
-          <div class="widget-title">Today's Performance</div>
-          <div class="qstat-list">
-            <div>
-              <div class="qstat-item">
-                <span class="qstat-label">Tickets handled</span>
-                <span class="qstat-val">11 / 20</span>
-              </div>
-              <div class="progress-bar-wrap"><div class="progress-bar" style="width:55%"></div></div>
-            </div>
-            <div>
-              <div class="qstat-item">
-                <span class="qstat-label">First contact resolution</span>
-                <span class="qstat-val">73%</span>
-              </div>
-              <div class="progress-bar-wrap"><div class="progress-bar" style="width:73%; background:#22c55e"></div></div>
-            </div>
-            <div>
-              <div class="qstat-item">
-                <span class="qstat-label">Escalations raised</span>
-                <span class="qstat-val">2</span>
-              </div>
-              <div class="progress-bar-wrap"><div class="progress-bar" style="width:20%; background:#ef4444"></div></div>
-            </div>
-            <div>
-              <div class="qstat-item">
-                <span class="qstat-label">Client satisfaction</span>
-                <span class="qstat-val">94%</span>
-              </div>
-              <div class="progress-bar-wrap"><div class="progress-bar" style="width:94%; background:#4361ee"></div></div>
-            </div>
-            <div>
-              <div class="qstat-item">
-                <span class="qstat-label">Chats active now</span>
-                <span class="qstat-val">3</span>
-              </div>
-              <div class="progress-bar-wrap"><div class="progress-bar" style="width:30%; background:#f59e0b"></div></div>
-            </div>
+        <div style="margin-top:8px; padding-top:10px; border-top: 0.5px solid var(--color-border-tertiary);">
+          <div class="card-title" style="margin-bottom:8px;">Recent activity</div>
+          <div class="recent">
+            <div class="act"><span class="act-dot" style="background:#3b82f6;"></span>Resolved #TKT-0408 — deposit delay<span class="act-time">09:14</span></div>
+            <div class="act"><span class="act-dot" style="background:#10b981;"></span>New ticket #TKT-0412 assigned<span class="act-time">09:32</span></div>
+            <div class="act"><span class="act-dot" style="background:#f59e0b;"></span>Follow-up sent for #TKT-0405<span class="act-time">10:01</span></div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-</div>
 
-<script>
-  function showSignup() {
-    document.getElementById('loginPage').classList.add('hidden');
-    document.getElementById('signupPage').classList.remove('hidden');
-  }
-  function showLogin() {
-    document.getElementById('signupPage').classList.add('hidden');
-    document.getElementById('loginPage').classList.remove('hidden');
-  }
-  function goToDashboard() {
-    document.getElementById('loginPage').classList.add('hidden');
-    document.getElementById('signupPage').classList.add('hidden');
-    document.getElementById('dashboardPage').classList.remove('hidden');
-  }
-  function logout() {
-    document.getElementById('dashboardPage').classList.add('hidden');
-    document.getElementById('loginPage').classList.remove('hidden');
-  }
-</script>
-</body>
-</html>
+</div>
